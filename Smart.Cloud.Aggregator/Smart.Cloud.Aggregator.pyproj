@@ -1,0 +1,199 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>e3cae178-4a8f-486c-85ad-4308703d3c30</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>
+    </StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>Smart.Cloud.Aggregator</Name>
+    <RootNamespace>Smart.Cloud.Aggregator</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="main.py" />
+    <Compile Include="scripts\generate_supported_services_by_parser.py" />
+    <Compile Include="src\aggregator.py" />
+    <Compile Include="src\arm_template_parser.py" />
+    <Compile Include="src\arm_template_parser_compat.py" />
+    <Compile Include="src\aws\parsers\bash.py" />
+    <Compile Include="src\aws\parsers\cloudformation.py" />
+    <Compile Include="src\aws\parsers\go.py" />
+    <Compile Include="src\aws\parsers\java.py" />
+    <Compile Include="src\aws\parsers\python.py" />
+    <Compile Include="src\aws\parsers\typescript.py" />
+    <Compile Include="src\aws\parsers\__init__.py" />
+    <Compile Include="src\aws\__init__.py" />
+    <Compile Include="src\azure\parsers\arm.py" />
+    <Compile Include="src\azure\parsers\azure_cli.py" />
+    <Compile Include="src\azure\parsers\bicep.py" />
+    <Compile Include="src\azure\parsers\powershell.py" />
+    <Compile Include="src\azure\parsers\terraform.py" />
+    <Compile Include="src\azure\parsers\__init__.py" />
+    <Compile Include="src\azure\__init__.py" />
+    <Compile Include="src\azure_cli_parser.py" />
+    <Compile Include="src\azure_cli_parser_compat.py" />
+    <Compile Include="src\base_parser.py" />
+    <Compile Include="src\base_parser_compat.py" />
+    <Compile Include="src\bicep_parser.py" />
+    <Compile Include="src\bicep_parser_compat.py" />
+    <Compile Include="src\enhanced_unified_parser.py" />
+    <Compile Include="src\parsers\arm\arm_template_parser.py" />
+    <Compile Include="src\parsers\arm\__init__.py" />
+    <Compile Include="src\parsers\azure_cli\azure_cli_parser.py" />
+    <Compile Include="src\parsers\azure_cli\__init__.py" />
+    <Compile Include="src\parsers\base.py" />
+    <Compile Include="src\parsers\bash\bash_aws_parser.py" />
+    <Compile Include="src\parsers\bash\__init__.py" />
+    <Compile Include="src\parsers\bicep\bicep_parser.py" />
+    <Compile Include="src\parsers\bicep\__init__.py" />
+    <Compile Include="src\parsers\cloudformation\cloudformation_parser.py" />
+    <Compile Include="src\parsers\cloudformation\__init__.py" />
+    <Compile Include="src\parsers\go\go_aws_parser.py" />
+    <Compile Include="src\parsers\go\__init__.py" />
+    <Compile Include="src\parsers\java\java_aws_parser.py" />
+    <Compile Include="src\parsers\java\__init__.py" />
+    <Compile Include="src\parsers\powershell\powershell_parser.py" />
+    <Compile Include="src\parsers\powershell\__init__.py" />
+    <Compile Include="src\parsers\python\python_aws_parser.py" />
+    <Compile Include="src\parsers\python\__init__.py" />
+    <Compile Include="src\parsers\terraform\terraform_parser.py" />
+    <Compile Include="src\parsers\terraform\__init__.py" />
+    <Compile Include="src\parsers\typescript\typescript_aws_parser.py" />
+    <Compile Include="src\parsers\typescript\__init__.py" />
+    <Compile Include="src\parsers\__init__.py" />
+    <Compile Include="src\powershell_parser.py" />
+    <Compile Include="src\powershell_parser_compat.py" />
+    <Compile Include="src\report_generator.py" />
+    <Compile Include="src\service_mapping.py" />
+    <Compile Include="src\terraform_parser.py" />
+    <Compile Include="src\terraform_parser_compat.py" />
+    <Compile Include="src\unified_parser.py" />
+    <Compile Include="src\universal_scanner.py" />
+    <Compile Include="src\__init__.py" />
+    <Compile Include="testing\run_all_tests.py" />
+    <Compile Include="testing\test_aggregator.py" />
+    <Compile Include="testing\test_aws_multilang.py" />
+    <Compile Include="testing\test_aws_support.py" />
+    <Compile Include="testing\test_bicep_comprehensive.py" />
+    <Compile Include="testing\test_integration_terraform_bicep.py" />
+    <Compile Include="testing\test_new_format_parsers.py" />
+    <Compile Include="testing\test_output_folder_creation.py" />
+    <Compile Include="testing\test_unit_tests.py" />
+    <Compile Include="testing\test_universal_scanner.py" />
+    <Compile Include="testing\test_v2_unit_tests.py" />
+    <Compile Include="testing\tools\verify_multi_format_support.py" />
+    <Compile Include="testing\__init__.py" />
+    <Compile Include="tests\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".github\ISSUE_TEMPLATE\bug_report.yml" />
+    <Content Include=".github\ISSUE_TEMPLATE\feature_request.yml" />
+    <Content Include=".github\ISSUE_TEMPLATE\pull_request.md" />
+    <Content Include=".github\workflows\build.yml" />
+    <Content Include=".github\workflows\tests.yml" />
+    <Content Include=".gitignore" />
+    <Content Include="CHANGELOG.md" />
+    <Content Include="CODE_OF_CONDUCT.md" />
+    <Content Include="CONTRIBUTING.md" />
+    <Content Include="docs\ARCHITECTURE.md" />
+    <Content Include="docs\QUICKSTART.md" />
+    <Content Include="docs\README.md" />
+    <Content Include="docs\SUPPORTED_SERVICES_BY_PARSER.md" />
+    <Content Include="docs\TESTING_GUIDE.md" />
+    <Content Include="docs\UNIVERSAL_SCANNER_GUIDE.md" />
+    <Content Include="examples\additional_services.tf" />
+    <Content Include="examples\bicep\database.bicep" />
+    <Content Include="examples\bicep\networking.bicep" />
+    <Content Include="examples\bicep\storage.bicep" />
+    <Content Include="examples\main.tf" />
+    <Content Include="INSTALLATION.md" />
+    <Content Include="LICENSE" />
+    <Content Include="README.md" />
+    <Content Include="ROADMAP.md" />
+    <Content Include="SECURITY.md" />
+    <Content Include="src\parsers\arm\__pycache__\arm_template_parser.cpython-313.pyc" />
+    <Content Include="src\parsers\arm\__pycache__\__init__.cpython-313.pyc" />
+    <Content Include="src\parsers\azure_cli\__pycache__\azure_cli_parser.cpython-313.pyc" />
+    <Content Include="src\parsers\azure_cli\__pycache__\__init__.cpython-313.pyc" />
+    <Content Include="src\parsers\bicep\__pycache__\bicep_parser.cpython-313.pyc" />
+    <Content Include="src\parsers\bicep\__pycache__\__init__.cpython-313.pyc" />
+    <Content Include="src\parsers\powershell\__pycache__\powershell_parser.cpython-313.pyc" />
+    <Content Include="src\parsers\powershell\__pycache__\__init__.cpython-313.pyc" />
+    <Content Include="src\parsers\terraform\__pycache__\terraform_parser.cpython-313.pyc" />
+    <Content Include="src\parsers\terraform\__pycache__\__init__.cpython-313.pyc" />
+    <Content Include="src\parsers\__pycache__\base.cpython-313.pyc" />
+    <Content Include="src\parsers\__pycache__\__init__.cpython-313.pyc" />
+    <Content Include="src\__pycache__\aggregator.cpython-313.pyc" />
+    <Content Include="src\__pycache__\arm_template_parser.cpython-313.pyc" />
+    <Content Include="src\__pycache__\azure_cli_parser.cpython-313.pyc" />
+    <Content Include="src\__pycache__\base_parser.cpython-313.pyc" />
+    <Content Include="src\__pycache__\bicep_parser.cpython-313.pyc" />
+    <Content Include="src\__pycache__\enhanced_unified_parser.cpython-313.pyc" />
+    <Content Include="src\__pycache__\powershell_parser.cpython-313.pyc" />
+    <Content Include="src\__pycache__\report_generator.cpython-313.pyc" />
+    <Content Include="src\__pycache__\service_mapping.cpython-313.pyc" />
+    <Content Include="src\__pycache__\terraform_parser.cpython-313.pyc" />
+    <Content Include="src\__pycache__\unified_parser.cpython-313.pyc" />
+    <Content Include="src\__pycache__\universal_scanner.cpython-313.pyc" />
+    <Content Include="src\__pycache__\__init__.cpython-313.pyc" />
+    <Content Include="testing\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".github\" />
+    <Folder Include=".github\ISSUE_TEMPLATE\" />
+    <Folder Include=".github\workflows\" />
+    <Folder Include="docs\" />
+    <Folder Include="examples\" />
+    <Folder Include="examples\bicep\" />
+    <Folder Include="packaging\" />
+    <Folder Include="scripts\" />
+    <Folder Include="src\" />
+    <Folder Include="src\aws\" />
+    <Folder Include="src\aws\parsers\" />
+    <Folder Include="src\azure\" />
+    <Folder Include="src\azure\parsers\" />
+    <Folder Include="src\parsers\" />
+    <Folder Include="src\parsers\arm\" />
+    <Folder Include="src\parsers\arm\__pycache__\" />
+    <Folder Include="src\parsers\azure_cli\" />
+    <Folder Include="src\parsers\azure_cli\__pycache__\" />
+    <Folder Include="src\parsers\bash\" />
+    <Folder Include="src\parsers\bicep\" />
+    <Folder Include="src\parsers\bicep\__pycache__\" />
+    <Folder Include="src\parsers\cloudformation\" />
+    <Folder Include="src\parsers\go\" />
+    <Folder Include="src\parsers\java\" />
+    <Folder Include="src\parsers\powershell\" />
+    <Folder Include="src\parsers\powershell\__pycache__\" />
+    <Folder Include="src\parsers\python\" />
+    <Folder Include="src\parsers\terraform\" />
+    <Folder Include="src\parsers\terraform\__pycache__\" />
+    <Folder Include="src\parsers\typescript\" />
+    <Folder Include="src\parsers\__pycache__\" />
+    <Folder Include="src\__pycache__\" />
+    <Folder Include="testing\" />
+    <Folder Include="testing\tools\" />
+    <Folder Include="tests\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>

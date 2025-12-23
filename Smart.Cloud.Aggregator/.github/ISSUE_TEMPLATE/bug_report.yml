@@ -1,0 +1,99 @@
+name: Bug Report
+description: Report a bug or unexpected behavior
+title: "[BUG] "
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please provide as much detail as possible.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Clear description of the bug
+      placeholder: Describe what happened...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How to reproduce the issue
+      placeholder: |
+        1. Run `python main.py ./infra`
+        2. Observe...
+        3. Error occurs
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead
+      placeholder: Expected output should be...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened (include error messages)
+      placeholder: Error message or unexpected output
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - Linux (Ubuntu)
+        - macOS
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: python_version
+    attributes:
+      label: Python Version
+      description: Output of `python --version`
+      placeholder: "Python 3.10.x"
+    validations:
+      required: true
+
+  - type: textarea
+    id: iac_files
+    attributes:
+      label: Sample IaC File (Optional)
+      description: Minimal IaC file that reproduces the issue
+      render: terraform
+      placeholder: |
+        resource "azurerm_resource_group" "example" {
+          name = "example"
+        }
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Debug Output
+      description: Run with `-v` flag and paste relevant output
+      render: bash
+      placeholder: Output from `python main.py ./infra -v`
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I've checked for similar issues
+          required: true
+        - label: I'm using the latest version
+          required: false
