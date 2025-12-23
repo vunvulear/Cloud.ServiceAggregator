@@ -23,7 +23,7 @@ Multi-cloud Infrastructure as Code (IaC) analyzer for **Azure** and **AWS** that
 ### Setup
 
 ```bash
-git clone https://github.com/yourusername/Smart.Cloud.Aggregator.git
+git clone https://github.com/vunvulear/Cloud.ServiceAggregator.git
 cd Smart.Cloud.Aggregator
 
 # Optional: Create virtual environment
