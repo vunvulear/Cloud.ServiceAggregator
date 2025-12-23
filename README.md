@@ -4,18 +4,18 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen)
 
-Multi-cloud Infrastructure as Code (IaC) analyzer for **Azure** and **AWS** that aggregates and reports on cloud services across multiple formats.
+Multi-cloud Infrastructure as Code (IaC) analyzer for Azure and AWS that aggregates and reports on cloud services across multiple formats.
 
-## ?? Features
+## Features
 
-- **Multi-Format Support**: Terraform, Bicep, ARM Templates, PowerShell, Azure CLI, CloudFormation, and code-based IaC (Python, TypeScript, Go, Java/C#)
-- **Multi-Cloud**: Analyzes both Azure and AWS resources in a single pass
-- **Vendor Grouping**: Services organized and reported separately by cloud vendor
-- **Multiple Outputs**: Markdown and JSON reports with detailed resource breakdowns
-- **Language Detection**: Automatically discovers and parses IaC files recursively
-- **Resource Aggregation**: Groups resources by category, service, and cloud vendor
+- Multi-Format Support: Terraform, Bicep, ARM Templates, PowerShell, Azure CLI, CloudFormation, and code-based IaC (Python, TypeScript, Go, Java/C#)
+- Multi-Cloud: Analyzes both Azure and AWS resources in a single pass
+- Vendor Grouping: Services organized and reported separately by cloud vendor
+- Multiple Outputs: Markdown and JSON reports with detailed resource breakdowns
+- Language Detection: Automatically discovers and parses IaC files recursively
+- Resource Aggregation: Groups resources by category, service, and cloud vendor
 
-## ?? Installation
+## Installation
 
 ### Requirements
 - Python 3.10+
@@ -33,7 +33,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 # No external dependencies required for core functionality
 ```
 
-## ?? Quick Start
+## Quick Start
 
 ### Basic Usage
 
@@ -58,38 +58,38 @@ python main.py ./my-infrastructure --json-only
 
 The tool generates reports in the target directory under `Smart.Cloud.Aggregator.Output/`:
 
-- `cloud_services_report.md` - Markdown report with vendor-separated sections
-- `cloud_services_report.json` - JSON report with detailed resource metadata
+- cloud_services_report.md - Markdown report with vendor-separated sections
+- cloud_services_report.json - JSON report with detailed resource metadata
 
-## ?? Supported Languages & Formats
+## Supported Languages and Formats
 
 ### Infrastructure as Code
 | Language | Format | Parser | Cloud |
 |----------|--------|--------|-------|
-| Terraform | `.tf` | UnifiedIaCParser | Azure, AWS, GCP |
-| Bicep | `.bicep` | BicepParser | Azure |
-| ARM Templates | `.json` | ARMParser | Azure |
-| PowerShell | `.ps1` | PowerShellParser | Azure |
-| Azure CLI | `.sh` | AzureCliParser | Azure |
-| CloudFormation | `.yaml`, `.json` | CloudFormationParser | AWS |
+| Terraform | .tf | UnifiedIaCParser | Azure, AWS, GCP |
+| Bicep | .bicep | BicepParser | Azure |
+| ARM Templates | .json | ARMParser | Azure |
+| PowerShell | .ps1 | PowerShellParser | Azure |
+| Azure CLI | .sh | AzureCliParser | Azure |
+| CloudFormation | .yaml, .json | CloudFormationParser | AWS |
 
 ### Code-Based IaC
 | Language | Format | Detection | Cloud |
 |----------|--------|-----------|-------|
-| Python | `.py` | AWS SDK imports | AWS |
-| TypeScript | `.ts`, `.tsx` | AWS CDK/SDK imports | AWS |
-| Go | `.go` | AWS SDK imports | AWS |
-| Java/C# | `.java`, `.cs` | AWS SDK imports | AWS |
+| Python | .py | AWS SDK imports | AWS |
+| TypeScript | .ts, .tsx | AWS CDK/SDK imports | AWS |
+| Go | .go | AWS SDK imports | AWS |
+| Java/C# | .java, .cs | AWS SDK imports | AWS |
 
-## ?? Documentation
+## Documentation
 
-- [Quick Start Guide](./docs/QUICKSTART.md) - Get started in minutes
-- [Architecture Overview](./docs/ARCHITECTURE.md) - System design and components
-- [Universal Scanner Guide](./docs/UNIVERSAL_SCANNER_GUIDE.md) - Language detection and file discovery
-- [Testing Guide](./docs/TESTING_GUIDE.md) - Running tests and coverage
-- [Supported Services](./docs/SUPPORTED_SERVICES_BY_PARSER.md) - Complete service mappings
+- Quick Start Guide: docs/QUICKSTART.md
+- Architecture Overview: docs/ARCHITECTURE.md
+- Universal Scanner Guide: docs/UNIVERSAL_SCANNER_GUIDE.md
+- Testing Guide: docs/TESTING_GUIDE.md
+- Supported Services: docs/SUPPORTED_SERVICES_BY_PARSER.md
 
-## ??? Project Structure
+## Project Structure
 
 ```
 Smart.Cloud.Aggregator/
@@ -109,7 +109,7 @@ Smart.Cloud.Aggregator/
 ??? README.md                        # This file
 ```
 
-## ?? Example Output
+## Example Output
 
 ### Markdown Report
 Reports are organized by cloud vendor with service groupings:
@@ -153,7 +153,7 @@ Includes detailed vendor grouping and resource metadata:
 }
 ```
 
-## ?? Testing
+## Testing
 
 Run all tests with verbose output:
 
@@ -162,50 +162,41 @@ cd Smart.Cloud.Aggregator
 python -m unittest discover -s testing -p "test_*.py" -v
 ```
 
-**Test Coverage:**
+Test Coverage:
 - 170+ unit and integration tests
 - Terraform, Bicep, ARM Templates, CloudFormation parsing
 - Report generation (Markdown/JSON)
 - Service mapping validation
 - End-to-end workflows
 
-## ?? Troubleshooting
+## Troubleshooting
 
-### "No resources found"
-- Ensure your directory contains supported IaC files
-- Check file extensions (.tf, .bicep, .json for ARM/CloudFormation, etc.)
-- Use `-v` flag to see which files were detected
+- No resources found: Ensure your directory contains supported IaC files and correct extensions (.tf, .bicep, .json). Use -v to see detected files.
+- Permission denied: Ensure read permissions for input and write permissions for output directory.
+- Module import errors: Verify Python 3.10+ and run from the project root directory.
 
-### Permission Denied
-- Ensure you have read permissions on the target directory
-- Output folder requires write permissions
+## License
 
-### Module Import Errors
-- Verify Python 3.10+ with `python --version`
-- Confirm you're running from the project root directory
+This project is licensed under the MIT License - see LICENSE for details.
 
-## ?? License
+## Contributing
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
+Contributions are welcome. See CONTRIBUTING.md for guidelines.
 
-## ?? Contributing
-
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Areas for Contribution
+Areas for Contribution:
 - New IaC format parsers
 - Additional cloud vendor support (GCP, Alibaba)
 - Service mapping expansions
 - Documentation improvements
 - Test coverage enhancements
 
-## ?? Support
+## Support
 
-- **Issues**: [GitHub Issues](https://github.com/vunvulear/Cloud.ServiceAggregator/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/vunvulear/Cloud.ServiceAggregator/discussions)
-- **Documentation**: See `/docs` folder
+- Issues: https://github.com/vunvulear/Cloud.ServiceAggregator/issues
+- Discussions: https://github.com/vunvulear/Cloud.ServiceAggregator/discussions
+- Documentation: See /docs folder
 
-## ??? Roadmap
+## Roadmap
 
 - [ ] GCP support
 - [ ] Terraform state file analysis
@@ -214,15 +205,15 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 - [ ] Web UI dashboard
 - [ ] CI/CD integration examples
 
-## ?? Statistics
+## Statistics
 
-- **Supported Formats**: 12+ IaC formats
-- **Supported Languages**: 8+ programming languages
-- **Services Mapped**: 200+ Azure/AWS services
-- **Test Coverage**: 170+ tests
+- Supported Formats: 12+ IaC formats
+- Supported Languages: 8+ programming languages
+- Services Mapped: 200+ Azure/AWS services
+- Test Coverage: 170+ tests
 
 ---
 
-**Repository**: [github.com/vunvulear/Cloud.ServiceAggregator](https://github.com/vunvulear/Cloud.ServiceAggregator)
+Repository: https://github.com/vunvulear/Cloud.ServiceAggregator
 
-**Built with ?? for multi-cloud infrastructure management**
+Built for multi-cloud infrastructure management
