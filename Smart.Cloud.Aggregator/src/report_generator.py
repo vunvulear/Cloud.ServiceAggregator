@@ -92,6 +92,26 @@ class ReportGenerator:
             report_data['parsed_files'] = parsed_files
         return json.dumps(report_data, indent=2)
 
+    def generate_csv(self) -> str:
+        """Generate CSV report: first line folder name, then service,resource_type,category,vendor"""
+        analyzed_folder = (self.metadata or {}).get('analyzed_folder', '')
+        lines = []
+        lines.append(analyzed_folder)
+        # Iterate categories and services
+        for category in sorted(self.services.keys()):
+            for service_name in sorted(self.services[category].keys()):
+                info = self.services[category][service_name]
+                resource_type = info.get('resource_type', '')
+                vendor = self._get_vendor(resource_type)
+                # CSV escape commas by quoting if needed
+                def esc(val: str) -> str:
+                    if val is None:
+                        return ''
+                    s = str(val)
+                    return '"' + s.replace('"', '""') + '"' if (',' in s or '"' in s) else s
+                lines.append(f"{esc(service_name)},{esc(resource_type)},{esc(category)},{esc(vendor)}")
+        return "\n".join(lines) + "\n"
+
     def _header(self) -> str:
         """Generate report header"""
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -262,10 +282,12 @@ class ReportGenerator:
         
         Args:
             output_file: Output file path
-            format: Report format ('markdown' or 'json')
+            format: Report format ('markdown' or 'json' or 'csv')
         """
         if format == 'json':
             content = self.generate_json()
+        elif format == 'csv':
+            content = self.generate_csv()
         else:
             content = self.generate_markdown()
         

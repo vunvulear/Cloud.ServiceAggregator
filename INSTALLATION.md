@@ -54,6 +54,9 @@ python main.py /path/to/infrastructure
 
 # Save to custom output
 python main.py ./infra -o my-report.md
+
+# JSON and CSV outputs
+python main.py ./infra -j --csv
 ```
 
 ### Generate Reports
@@ -67,6 +70,9 @@ python main.py ./infra -j
 
 # JSON only
 python main.py ./infra --json-only
+
+# CSV as well
+python main.py ./infra --csv
 
 # Verbose output for debugging
 python main.py ./infra -v
@@ -121,8 +127,9 @@ Options:
 Reports are generated in:
 ```
 <analyzed-directory>/Smart.Cloud.Aggregator.Output/
-??? cloud_services_report.md   # Markdown report
-??? cloud_services_report.json # JSON report (if -j flag used)
+??? cloud_services_report.md   # Markdown report (summary includes Azure and AWS counts)
+??? cloud_services_report.json # JSON report (summary + vendors section)
+??? cloud_services_report.csv  # CSV: folder name then service_name,resource_type,category,vendor
 ```
 
 ### Report Contents
@@ -140,6 +147,10 @@ Reports are generated in:
 - Metadata
 - Services (by category)
 - Vendors (by cloud provider)
+
+**CSV Report:**
+- Summary rows for each service
+- Columns: folder name, service name, resource type, category
 
 ## Troubleshooting
 

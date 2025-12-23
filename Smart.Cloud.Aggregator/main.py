@@ -64,6 +64,7 @@ def main():
     parser.add_argument('--language', choices=['terraform','bicep','powershell','cli','arm','cloudformation','python','typescript','go','dotnet','bash'], help='Limit to one language')
     parser.add_argument('--recursive', action='store_true', default=True, help='Recursive scan (default)')
     parser.add_argument('--no-recursive', action='store_false', dest='recursive', help='Disable recursive scan')
+    parser.add_argument('--csv', action='store_true', help='Also output CSV report')
 
     args = parser.parse_args()
 
@@ -100,6 +101,7 @@ def main():
             'parsed_files': iac_parser.get_parsed_files(),
             'resource_groups': list(getattr(iac_parser, 'get_resource_groups', lambda: [])()),
             'languages_found': getattr(iac_parser, 'get_languages_found', lambda: [])(),
+            'analyzed_folder': str(Path(args.directory).resolve()),
         }
 
         # Ensure output directory inside analyzed path exists
@@ -108,6 +110,7 @@ def main():
         base_name = Path(args.output).name
         md_path = out_dir / base_name
         json_path = out_dir / base_name.replace('.md', '.json')
+        csv_path = out_dir / base_name.replace('.md', '.csv')
 
         # Use empty dict if no resources to still generate reports
         services_to_report = aggregated or {}
@@ -116,6 +119,8 @@ def main():
             report.save_to_file(str(md_path), format='markdown')
         if args.json or args.json_only:
             report.save_to_file(str(json_path), format='json')
+        if args.csv:
+            report.save_to_file(str(csv_path), format='csv')
 
         summary = iac_parser.get_summary()
         print("\n" + "="*60)

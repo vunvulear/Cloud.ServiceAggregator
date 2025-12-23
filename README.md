@@ -10,8 +10,10 @@ Multi-cloud Infrastructure as Code (IaC) analyzer for Azure and AWS that aggrega
 
 - Multi-Format Support: Terraform, Bicep, ARM Templates, PowerShell, Azure CLI, CloudFormation, and code-based IaC (Python, TypeScript, Go, Java/C#)
 - Multi-Cloud: Analyzes both Azure and AWS resources in a single pass
-- Vendor Grouping: Services organized and reported separately by cloud vendor
-- Multiple Outputs: Markdown and JSON reports with detailed resource breakdowns
+- Vendor Grouping: Services organized and reported separately by cloud vendor (JSON includes a vendors section)
+- Multiple Outputs: Markdown, JSON, and CSV reports
+- Markdown Summary: Includes counts for both Azure and AWS services, and total resources
+- CSV Export: First line is analyzed folder; subsequent lines are service_name, resource_type, category
 - Language Detection: Automatically discovers and parses IaC files recursively
 - Resource Aggregation: Groups resources by category, service, and cloud vendor
 
@@ -47,6 +49,9 @@ python main.py ./my-infrastructure
 # Generate JSON report
 python main.py ./my-infrastructure -j
 
+# Generate JSON + CSV
+python main.py ./my-infrastructure -j --csv
+
 # Verbose output
 python main.py ./my-infrastructure -v
 
@@ -56,10 +61,13 @@ python main.py ./my-infrastructure --json-only
 
 ### Output
 
-The tool generates reports in the target directory under `Smart.Cloud.Aggregator.Output/`:
+Reports are generated in the analyzed directory under `Smart.Cloud.Aggregator.Output/`:
 
-- cloud_services_report.md - Markdown report with vendor-separated sections
-- cloud_services_report.json - JSON report with detailed resource metadata
+- cloud_services_report.md - Markdown report with vendor-separated sections. Summary shows Azure Services, AWS Services, Total Resources.
+- cloud_services_report.json - JSON report with summary, metadata, services, and a vendors section grouped by cloud
+- cloud_services_report.csv - CSV report with:
+  - Line 1: absolute path of analyzed folder
+  - Lines 2..n: service_name,resource_type,category,vendor
 
 ## Supported Languages and Formats
 
@@ -102,7 +110,7 @@ Smart.Cloud.Aggregator/
 ?   ??? service_mapping.py          # Resource type ? service category mapping
 ?   ??? universal_scanner.py        # Language-aware file discovery
 ?   ??? enhanced_unified_parser.py  # Multi-cloud unified parser
-?   ??? report_generator.py         # Markdown/JSON report generation
+?   ??? report_generator.py         # Markdown/JSON/CSV report generation
 ??? docs/                            # Documentation
 ??? testing/                         # Unit and integration tests
 ??? scripts/                         # Utility scripts
@@ -112,10 +120,16 @@ Smart.Cloud.Aggregator/
 ## Example Output
 
 ### Markdown Report
-Reports are organized by cloud vendor with service groupings:
+Reports are organized by cloud vendor with service groupings and a summary including Azure and AWS counts:
 
 ```markdown
 # Cloud Services Assessment Report
+
+## Summary
+- Total Service Categories: N
+- Total Azure Services: X
+- Total AWS Services: Y
+- Total Resources: Z
 
 ## Services by Cloud Vendor
 
@@ -131,14 +145,16 @@ Reports are organized by cloud vendor with service groupings:
 ```
 
 ### JSON Report
-Includes detailed vendor grouping and resource metadata:
+Includes detailed vendor grouping and summary fields:
 
 ```json
 {
   "summary": {
     "categories": 9,
     "services": 45,
-    "resources": 92
+    "resources": 92,
+    "azure_services": 13,
+    "aws_services": 32
   },
   "vendors": {
     "Azure": {
@@ -153,6 +169,9 @@ Includes detailed vendor grouping and resource metadata:
 }
 ```
 
+### CSV Report
+First line is the analyzed folder; subsequent lines contain service_name,resource_type,category.
+
 ## Testing
 
 Run all tests with verbose output:
@@ -165,7 +184,7 @@ python -m unittest discover -s testing -p "test_*.py" -v
 Test Coverage:
 - 170+ unit and integration tests
 - Terraform, Bicep, ARM Templates, CloudFormation parsing
-- Report generation (Markdown/JSON)
+- Report generation (Markdown/JSON/CSV)
 - Service mapping validation
 - End-to-end workflows
 

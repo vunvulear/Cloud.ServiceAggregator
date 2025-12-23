@@ -127,3 +127,13 @@ python main.py <directory> [options]
 For migration guides, see the [MIGRATION.md](docs/MIGRATION.md) file.
 
 For detailed commit history, see [GitHub Commits](https://github.com/vunvulear/Cloud.ServiceAggregator/commits/main).
+
+## [Unreleased]
+
+### Added
+- CSV report generation (`--csv`): first line is analyzed folder; subsequent lines are `service_name,resource_type,category,vendor`
+- Markdown summary now lists Azure Services and AWS Services counts before Total Resources
+- JSON report now includes `vendors` grouping and `summary.azure_services`/`summary.aws_services`
+
+### Changed
+- CLI: added `--csv` flag to emit CSV alongside Markdown/JSON
