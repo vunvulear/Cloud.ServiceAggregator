@@ -135,7 +135,8 @@ class ReportGenerator:
         
         summary = "## Summary\n\n"
         summary += f"- **Total Service Categories:** {stats['categories']}\n"
-        summary += f"- **Total Azure Services:** {stats['services']}\n"
+        summary += f"- **Total Azure Services:** {stats['azure_services']}\n"
+        summary += f"- **Total AWS Services:** {stats['aws_services']}\n"
         summary += f"- **Total Resources:** {stats['resources']}\n"
         summary += "\n"
         
@@ -143,7 +144,7 @@ class ReportGenerator:
         parsed = self.metadata.get('parsed_files', {})
         if parsed:
             tf_count = len(parsed.get('terraform', []))
-            bicep_count = len(parsed.get('bicep', []))
+            bicep_count = len(parsed.get('bicep', []));
             
             if tf_count or bicep_count:
                 summary += "**Files Analyzed:**\n\n"
@@ -235,11 +236,24 @@ class ReportGenerator:
             for service in category.values()
         )
         categories = len(self.services)
+
+        # Count services per vendor
+        azure_services = 0
+        aws_services = 0
+        for category, services in self.services.items():
+            for _, info in services.items():
+                vendor = self._get_vendor(info.get('resource_type', ''))
+                if vendor == 'Azure':
+                    azure_services += 1
+                elif vendor == 'AWS':
+                    aws_services += 1
         
         return {
             'categories': categories,
             'services': total_services,
-            'resources': total_resources
+            'resources': total_resources,
+            'azure_services': azure_services,
+            'aws_services': aws_services,
         }
 
     def save_to_file(self, output_file: str, format: str = 'markdown') -> None:

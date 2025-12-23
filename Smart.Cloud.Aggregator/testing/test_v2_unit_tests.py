@@ -321,6 +321,7 @@ class TestReportGenerator(unittest.TestCase):
         self.assertIn('## Summary', report)
         self.assertIn('Total Service Categories:** 2', report)
         self.assertIn('Total Azure Services:** 2', report)
+        self.assertIn('Total AWS Services:** 0', report)
         self.assertIn('Total Resources:** 3', report)
 
     def test_generate_markdown_contains_metadata(self):
