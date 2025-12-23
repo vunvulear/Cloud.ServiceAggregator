@@ -12,6 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>Smart.Cloud.Aggregator</Name>
     <RootNamespace>Smart.Cloud.Aggregator</RootNamespace>
+    <TestFramework>Pytest</TestFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -104,9 +105,6 @@
     <Content Include=".github\workflows\build.yml" />
     <Content Include=".github\workflows\tests.yml" />
     <Content Include=".gitignore" />
-    <Content Include="CHANGELOG.md" />
-    <Content Include="CODE_OF_CONDUCT.md" />
-    <Content Include="CONTRIBUTING.md" />
     <Content Include="docs\ARCHITECTURE.md" />
     <Content Include="docs\QUICKSTART.md" />
     <Content Include="docs\README.md" />
@@ -118,11 +116,6 @@
     <Content Include="examples\bicep\networking.bicep" />
     <Content Include="examples\bicep\storage.bicep" />
     <Content Include="examples\main.tf" />
-    <Content Include="INSTALLATION.md" />
-    <Content Include="LICENSE" />
-    <Content Include="README.md" />
-    <Content Include="ROADMAP.md" />
-    <Content Include="SECURITY.md" />
     <Content Include="src\parsers\arm\__pycache__\arm_template_parser.cpython-313.pyc" />
     <Content Include="src\parsers\arm\__pycache__\__init__.cpython-313.pyc" />
     <Content Include="src\parsers\azure_cli\__pycache__\azure_cli_parser.cpython-313.pyc" />
